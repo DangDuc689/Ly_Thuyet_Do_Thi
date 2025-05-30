@@ -37,7 +37,7 @@ void XuatMaTranKe(DOTHI g) {
 }
 
 
-// Duyệt đồ thị theo sâu DFS 
+// Duyệt đồ thị theo chiều sâu DFS 
 void DFS(int v, GRAPH &g){
     chuaXet[v] = 1;
     for (int u = 0; u < g.n; u++) {
@@ -70,36 +70,36 @@ void duyetTheoDFS(int s, int f, GRAPH g){
 }
 
 
-// Xây dựng Queue và duyệt đồ thị theo rộng BFS
+// Xây dựng Queue và duyệt đồ thị theo chiều rộng BFS
 struct QUEUE{
-    int size;
+    int n;
     int a[MAX];
 };
 
 void khoiTaoQueue(QUEUE &q) {
-    q.size = 0;
+    q.n = 0;
 }
 
 int dayGiaTriVaoQueue(QUEUE &q, int value) {
-    if (q.size < MAX) {
-        q.a[q.size++] = value;
+    if (q.n < MAX) {
+        q.a[q.n++] = value;
         return 1;
     }
     return 0;
 }
 
 int layGiaTriRaKhoiQueue(QUEUE &q, int &value){
-    if (q.size <= 0) return 0;
+    if (q.n <= 0) return 0;
     value = q.a[0];
-    for (int i = 0; i < q.size - 1; i++) {
+    for (int i = 0; i < q.n - 1; i++) {
         q.a[i] = q.a[i + 1];
     }
-    q.size--;
+    q.n--;
     return 1;
 }
 
 int kiemtraRongQueue(QUEUE &q) {
-    return (q.size <= 0);
+    return (q.n <= 0);
 }
 
 void BFS(int v, GRAPH g){
@@ -145,7 +145,7 @@ int nhapDinh(DOTHI &g, const char *tb){
     int done = 0;
     while (!done){
         fflush(stdin);
-        printf("%s [0..%d] (-1 dung): ", tb, g.n - 1);
+        printf("%s [0..%d] (-1 dung): ", tb, g.n-1);
         scanf("%d", &value);
         if (value == -1) return -1;
         done = (value >= 0 && value <= g.n - 1);
