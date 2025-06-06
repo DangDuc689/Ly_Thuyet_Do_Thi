@@ -23,6 +23,17 @@ int DocMaTranKe(const char TenFile[], DOTHI &g){
     return 1;
 }
 
+void XuatMaTranKe(DOTHI g) {
+    printf("So dinh cua do thi la %d\n", g.n);
+    printf("Ma tran ke cua do thi la: \n");
+    for (int i = 0; i < g.n; i++) {
+        printf("\t");
+        for (int j = 0; j < g.n; j++)
+            printf("%4d ", g.a[i][j]);
+        printf("\n");
+    }
+}
+
 void timDinhLienThong(DOTHI &g, int nhan[MAX], int i){
     for (int j = 0; j < g.n; j++){
         if (g.a[i][j] != 0 && nhan[i] != nhan[j]){
@@ -162,13 +173,7 @@ int main() {
     if (!DocMaTranKe(inputfile, g)) {
         return 1;
     }
-    printf("So dinh cua do thi: %d\n", g.n);
-    printf("Ma tran ke:\n");
-    for (int i = 0; i < g.n; i++) {
-        for (int j = 0; j < g.n; j++)
-            printf("%4d ", g.a[i][j]);
-        printf("\n");
-    }
+    XuatMaTranKe(g);
 
     printf("\n=== Thuat toan Prim ===\n");
     Prim(g);
